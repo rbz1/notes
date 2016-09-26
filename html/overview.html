@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/notes.css">
+    <meta charset="UTF-8">
+    <title>Note Pro</title>
+</head>
+<body>
+<div class="overview-area">
+    <div class="create-note-area">
+        <button type="button">Create new note</button>
+        <select>
+            <option value="black-white-style">Black white style</option>
+            <option value="color-style">Color style</option>
+        </select>
+    </div>
+    <div class="filter-notes-area">
+        <button type="button" id="filter-by-finish-date">By finish date</button>
+        <button type="button" id="filter-by-create-date">By created date</button>
+        <button type="button" id="filter-by-importance">By importance</button>
+        <button type="button" id="show-finished">Show finished</button>
+
+    </div>
+    <div class="note-items-area">
+        <div id="1" class="note">
+            <div class="note-row">
+                <div class="note-end-date">
+                    <p>Heute</p>
+                </div>
+                <div class="note-title-importance">
+                    <div class="note-title">
+                        <p>Einkaufen</p>
+                    </div>
+                    <div class="note-importance">
+                        <img src="../images/lightning.png" height="20px">
+                        <img src="../images/lightning.png" height="20px">
+                        <img src="../images/lightning.png" height="20px">
+                    </div>
+                </div>
+                <div class="note-row-dummy"></div>
+            </div>
+            <div class="note-row">
+                <div class="note-finished-state">
+                    <div class="note-finished">
+                        <input type="checkbox" checked="true">
+                    </div>
+                    <div class="note-state">
+                        <p>Erledigt</p>
+                    </div>
+                </div>
+                <div class="note-details"><textarea disabled="true">Butter&#13;&#10;Eier</textarea></div>
+                <div class="note-edit">
+                    <button type="button" id="edit-note">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../vendors/jquery-3.1.1.js"></script>
+<script src="../script/notes.js"></script>
+</body>
+</html>

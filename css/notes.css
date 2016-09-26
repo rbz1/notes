@@ -1,0 +1,48 @@
+body {
+    font-size: 100%;
+}
+
+.overview-area {
+    width: 80%;
+    max-width: 40em;
+    margin: 0 auto;
+    font-family: Helvetica, sans-serif;
+    font-size: 0.75em;
+}
+
+.create-note-area {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0em;
+}
+
+.filter-notes-area, .note-row {
+    display: flex;
+    /*flex-wrap: wrap;*/
+    align-content: center;
+    margin: 1em 0em;
+}
+
+.note-title-importance, .note-finished-state {
+    display: flex;
+}
+
+#filter-by-create-date, #filter-by-finish-date, #filter-by-importance, #show-finished {
+    flex-grow: 1;
+}
+
+.note-title-importance, .note-details {
+    flex-grow: 3;
+}
+
+.note-end-date, .note-row-dummy, .note-finished-state, .note-edit {
+    flex-grow: 1;
+}
+
+.note-title {
+    flex-grow: 3;
+}
+
+#show-finished {
+    margin-left: 5%;
+}

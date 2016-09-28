@@ -22,7 +22,7 @@
 
     </div>
     <div class="note-items-area">
-        <div id="1" class="note">
+        <div id="3" class="note">
             <div class="note-row">
                 <div class="note-end-date">
                     <p>Heute</p>
@@ -54,9 +54,79 @@
                 </div>
             </div>
         </div>
+        <div id="4" class="note">
+            <div class="note-row">
+                <div class="note-end-date">
+                    <p>Heute</p>
+                </div>
+                <div class="note-title-importance">
+                    <div class="note-title">
+                        <p>Velo reparieren</p>
+                    </div>
+                    <div class="note-importance">
+                        <img src="../images/lightning.png" height="20px">
+                        <img src="../images/lightning.png" height="20px">
+                        <img src="../images/lightning.png" height="20px">
+                    </div>
+                </div>
+                <div class="note-row-dummy"></div>
+            </div>
+            <div class="note-row">
+                <div class="note-finished-state">
+                    <div class="note-finished">
+                        <input type="checkbox" checked="true">
+                    </div>
+                    <div class="note-state">
+                        <p>Erledigt</p>
+                    </div>
+                </div>
+                <div class="note-details"><textarea disabled="true">Das Licht funktioniert nicht.</textarea></div>
+                <div class="note-edit">
+                    <button type="button" id="edit-note">Edit</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="../vendors/jquery-3.1.1.js"></script>
+<script src="../vendors/handlebars-v4.0.5.js"></script>
+
+<script id="note-template" type="text/x-handlebars-template">
+    <div id="{{id}}" class="note">
+        <div class="note-row">
+            <div class="note-end-date">
+                <p>{{note-end-date}}</p>
+            </div>
+            <div class="note-title-importance">
+                <div class="note-title">
+                    <p>{{note-title}}</p>
+                </div>
+                <div class="note-importance">
+                    <img src="../images/lightning.png" height="20px">
+                    <img src="../images/lightning.png" height="20px">
+                    <img src="../images/lightning.png" height="20px">
+                </div>
+            </div>
+            <div class="note-row-dummy"></div>
+        </div>
+        <div class="note-row">
+            <div class="note-finished-state">
+                <div class="note-finished">
+                    <input type="checkbox" {{note-finished}}>
+                </div>
+                <div class="note-state">
+                    <p>{{note-state}}</p>
+                </div>
+            </div>
+            <div class="note-details"><textarea disabled="true">{{note-details}}</textarea></div>
+            <div class="note-edit">
+                <button type="button"">Edit</button>
+            </div>
+        </div>
+    </div>
+</script>
+
 <script src="../script/notes.js"></script>
+
 </body>
 </html>

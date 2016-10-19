@@ -19,7 +19,7 @@ body {
     /*margin: 1em 0em;*/
 }
 
-.filter-notes-area {
+.sort-notes-area {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -28,7 +28,7 @@ body {
     /*margin: 1em 0em;*/
 }
 
-.note-item-row {
+.note-item-row, .note-detail-row {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -58,7 +58,7 @@ body {
     flex: 1 0 auto;
 }
 
-.note-item-description {
+.text-input-field {
     width: 100%;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

@@ -14,33 +14,32 @@
             <option value="color-style">Color style</option>
         </select>
     </div>
-    <div class="filter-notes-area">
-        <button type="button" id="btn-filter-by-finish-date" class="btn">By finish date</button>
-        <button type="button" id="btn-filter-by-create-date" class="btn">By created date</button>
-        <button type="button" id="btn-filter-by-importance" class="btn">By importance</button>
+    <div class="sort-notes-area">
+        <button type="button" id="btn-sort-by-finish-date" class="btn">By finish date</button>
+        <button type="button" id="btn-sort-by-create-date" class="btn">By created date</button>
+        <button type="button" id="btn-sort-by-importance" class="btn">By importance</button>
         <div class="btn-spacer"></div>
         <button type="button" id="btn-show-finished" class="btn">Show finished</button>
 
     </div>
-    <div class="note-items-area">
+    <div class="note-items-area" id="note-items">
     </div>
 </div>
-</div>
+
 <script src="../vendors/jquery-3.1.1.js"></script>
 <script src="../vendors/handlebars-v4.0.5.js"></script>
+<script src="../script/getRelativeDate.js"></script>
 
 <script id="note-template" type="text/x-handlebars-template">
-    <div id="{{id}}" class="note">
+    <div class="note">
         <div class="note-item-row">
             <div class="note-item-row-left">
-                <p class="note-end-date">{{note-end-date}}</p>
+                <p class="note-due-date">Due {{{relativeDueDate dueDate "some time or other"}}}</p>
             </div>
             <div class="note-item-row-center">
-                <p class="note-title">{{note-title}}</p>
+                <p class="note-title">{{title}}</p>
                 <div class="note-importance">
-                    <img src="../images/lightning.png" height="20px">
-                    <img src="../images/lightning.png" height="20px">
-                    <img src="../images/lightning.png" height="20px">
+                    <p>Priority level <em>{{{showImportance importance}}}</em></p>
                 </div>
             </div>
             <div class="note-item-row-right">
@@ -49,20 +48,20 @@
         </div>
         <div class="note-item-row">
             <div class="note-item-row-left">
-                <input type="checkbox" class="note-finished" {{note-finished}}>
-                <p class="note-state">{{note-state}}</p>
+                <input type="checkbox" id="note-finished-{{id}}" {{{isFinishedDate finishedDate}}}>
+                <p class="note-state">{{{relativeDueDate finishedDate "To be finished"}}}</p>
             </div>
             <div class="note-item-row-center">
-                <textarea disabled="true" class="note-item-description">{{note-details}}</textarea>
+                <textarea disabled="true" class="text-input-field">{{description}}</textarea>
             </div>
             <div class="note-item-row-right">
-                <button type="button" class="btn">Edit</button>
+                <button type="button" class="btn" id="{{id}}">Edit</button>
             </div>
         </div>
     </div>
 </script>
 
-<script src="../script/notes.js"></script>
+<script src="../script/overview.js"></script>
 
 </body>
 </html>

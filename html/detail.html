@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/notes.css">
+    <meta charset="UTF-8">
+    <title>Note Pro</title>
+</head>
+<body>
+<div>
+    <div class="page-area">
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-title">Title</label>
+            </div>
+            <div class="note-item-row-center">
+                <input type="text" class="text-input-field" id="note-title">
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-description">Description</label>
+            </div>
+            <div class="note-item-row-center">
+                <textarea class="text-input-field" id="note-description"></textarea>
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-due-date">Due by</label>
+            </div>
+            <div class="note-item-row-right">
+                <input type="date" id="note-due-date" class="text-input-field">
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-importance">Importance</label>
+            </div>
+            <div class="note-item-row-right">
+                <select id="note-importance" class="text-input-field">
+                    <option value="1">*</option>
+                    <option value="2">**</option>
+                    <option value="3">***</option>
+                    <option value="4">****</option>
+                    <option value="5">*****</option>
+                </select>
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-finished-date">Finished</label>
+            </div>
+            <div class="note-item-row-right">
+                <input type="checkbox" id="note-finished-date">
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <button type="button" class="btn" id="note-save">Save</button>
+            </div>
+            <div class="note-item-row-right">
+                <button type="button" class="btn" id="note-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../vendors/jquery-3.1.1.js"></script>
+<script src="../vendors/handlebars-v4.0.5.js"></script>
+
+<script src="../script/detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/notes.css">
+    <meta charset="UTF-8">
+    <title>Note Pro</title>
+</head>
+<body>
+<div class="page-area">
+    <div class="create-note-area">
+        <button type="button" class="btn" id="btn-create-new-note">Create new note</button>
+        <select id="style-selector">
+            <option value="black-white-style">Black white style</option>
+            <option value="color-style">Color style</option>
+        </select>
+    </div>
+    <div class="sort-notes-area">
+        <button type="button" id="btn-sort-by-finished-date" class="btn">By finish date</button>
+        <button type="button" id="btn-sort-by-create-date" class="btn">By created date</button>
+        <button type="button" id="btn-sort-by-importance" class="btn">By importance</button>
+        <div class="btn-spacer"></div>
+        <button type="button" id="btn-show-finished" class="btn">Show finished</button>
+
+    </div>
+    <div class="note-items-area" id="note-items">
+        {{#if notes}}
+            {{#each notes}}
+                {{> "notes"}}
+            {{/each}}
+        {{else}}
+            <p>No pending tasks.</p>
+        {{/if}}
+    </div>
+</div>
+
+<script src="../vendors/jquery-3.1.1.js"></script>
+<script src="../script/overview.js"></script>
+
+</body>
+</html>

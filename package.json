@@ -1,0 +1,27 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbz1/notes.git"
+  },
+  "keywords": [],
+  "author": "Roman Benz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbz1/notes/issues"
+  },
+  "homepage": "https://github.com/rbz1/notes#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "camelcase": "^3.0.0",
+    "express": "^4.14.0",
+    "express-hbs": "^1.0.3",
+    "nedb": "^1.8.0"
+  }
+}

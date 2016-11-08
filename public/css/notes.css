@@ -32,6 +32,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    vertical-align: top;
     /*align-content: center;*/
     /*margin: 1em 0em;*/
 }
@@ -69,4 +70,16 @@ body {
     background-color: #e7e7e7;
     color: black;
     border-radius: 4px;
+}
+
+hr {
+    height: 1px;
+    background: lightgray;
+}
+
+textarea {
+    font-family: Helvetica, sans-serif;
+    font-size: 12px;
+    white-space: pre-line;
+    background-color: white;
 }

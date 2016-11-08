@@ -49,5 +49,3 @@ function getRelativeDate(dateValue, undefinedDateValueString) {
 
     return relativeTmeString.trim();
 }
-
-module.exports = getRelativeDate;

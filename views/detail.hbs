@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/notes.css">
+    <meta charset="UTF-8">
+    <title>Note Pro</title>
+</head>
+<body>
+<form method="post" action="/detail">
+    <div class="page-area">
+        <input type="hidden" id="note-id" name="_id" value="{{{_id}}}">
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-title">Title</label>
+            </div>
+            <div class="note-item-row-center">
+                <input type="text" class="text-input-field" id="note-title" name="title" value="{{{title}}}">
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-description">Description</label>
+            </div>
+            <div class="note-item-row-center">
+                <textarea class="text-input-field" id="note-description" name="description">{{{description}}}</textarea>
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-due-date">Due by</label>
+            </div>
+            <div class="note-item-row-right">
+                <input type="text" id="note-due-date" class="text-input-field" name="dueDate" value="{{{dueDate}}}">
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-importance">Importance</label>
+            </div>
+            <div class="note-item-row-right">
+                <select id="note-importance" class="text-input-field" name="importance">
+                    <option value="1" {{{isSelected 1 importance}}}>*</option>
+                    <option value="2" {{{isSelected 2 importance}}}>**</option>
+                    <option value="3" {{{isSelected 3 importance}}}>***</option>
+                    <option value="4" {{{isSelected 4 importance}}}>****</option>
+                    <option value="5" {{{isSelected 5 importance}}}>*****</option>
+                </select>
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <label for="note-finished-date-checkbox">Finished</label>
+            </div>
+            <div class="note-item-row-right">
+                <input type="checkbox" id="note-finished-date-checkbox" name="finishedDateChecked" {{{finishedDateChecked finishedDate}}}>
+                <input type="hidden" id="note-finished-date" value="{{{finishedDate}}}" name="finishedDate">
+            </div>
+        </div>
+        <div class="note-detail-row">
+            <div class="note-item-row-left">
+                <button type="submit" class="btn" id="note-save">Save</button>
+            </div>
+            <div class="note-item-row-right">
+                <button type="reset" class="btn" id="note-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<link rel="stylesheet" href="/../vendors/jquery-ui-1.12.1/jquery-ui.css">
+<script src="../vendors/jquery-3.1.1.js"></script>
+<script src="../vendors/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="../script/detail.js"></script>
+</body>
+</html>

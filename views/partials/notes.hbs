@@ -1,0 +1,29 @@
+<div class="note">
+    <hr>
+    <div class="note-item-row">
+        <div class="note-item-row-left">
+            <p class="note-due-date">Due {{{relativeDueDate dueDate "some time or other"}}}</p>
+        </div>
+        <div class="note-item-row-center">
+            <p class="note-title">{{title}}</p>
+            <div class="note-importance">
+                <p>Priority level <em>{{{showImportance importance}}}</em></p>
+            </div>
+        </div>
+        <div class="note-item-row-right">
+
+        </div>
+    </div>
+    <div class="note-item-row">
+        <div class="note-item-row-left">
+            <input type="checkbox" class="note-finished" id="note-finished-{{_id}}" {{{isFinishedDate finishedDate}}}>
+            <label for="note-finished-{{_id}}">{{{relativeDueDate finishedDate "To be finished"}}}</label>
+        </div>
+        <div class="note-item-row-center">
+            <textarea disabled="true" class="text-input-field">{{description}}</textarea>
+        </div>
+        <div class="note-item-row-right">
+            <button type="button" class="btn" id="{{_id}}">Edit</button>
+        </div>
+    </div>
+</div>

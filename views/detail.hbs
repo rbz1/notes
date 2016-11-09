@@ -8,13 +8,13 @@
 <body>
 <form method="post" action="/detail">
     <div class="page-area">
-        <input type="hidden" id="note-id" name="_id" value="{{{_id}}}">
+        <input type="hidden" id="note-id" name="_id" value="{{{note._id}}}">
         <div class="note-detail-row">
             <div class="note-item-row-left">
                 <label for="note-title">Title</label>
             </div>
             <div class="note-item-row-center">
-                <input type="text" class="text-input-field" id="note-title" name="title" value="{{{title}}}">
+                <input type="text" class="text-input-field" id="note-title" name="title" value="{{{note.title}}}">
             </div>
         </div>
         <div class="note-detail-row">
@@ -22,7 +22,7 @@
                 <label for="note-description">Description</label>
             </div>
             <div class="note-item-row-center">
-                <textarea class="text-input-field" id="note-description" name="description">{{{description}}}</textarea>
+                <textarea class="text-input-field" id="note-description" name="description">{{{note.description}}}</textarea>
             </div>
         </div>
         <div class="note-detail-row">
@@ -30,7 +30,7 @@
                 <label for="note-due-date">Due by</label>
             </div>
             <div class="note-item-row-right">
-                <input type="text" id="note-due-date" class="text-input-field" name="dueDate" value="{{{dueDate}}}">
+                <input type="text" id="note-due-date" class="text-input-field" name="dueDate" value="{{{note.dueDate}}}">
             </div>
         </div>
         <div class="note-detail-row">
@@ -39,11 +39,11 @@
             </div>
             <div class="note-item-row-right">
                 <select id="note-importance" class="text-input-field" name="importance">
-                    <option value="1" {{{isSelected 1 importance}}}>*</option>
-                    <option value="2" {{{isSelected 2 importance}}}>**</option>
-                    <option value="3" {{{isSelected 3 importance}}}>***</option>
-                    <option value="4" {{{isSelected 4 importance}}}>****</option>
-                    <option value="5" {{{isSelected 5 importance}}}>*****</option>
+                    <option value="1" {{{isSelected 1 note.importance}}}>*</option>
+                    <option value="2" {{{isSelected 2 note.importance}}}>**</option>
+                    <option value="3" {{{isSelected 3 note.importance}}}>***</option>
+                    <option value="4" {{{isSelected 4 note.importance}}}>****</option>
+                    <option value="5" {{{isSelected 5 note.importance}}}>*****</option>
                 </select>
             </div>
         </div>
@@ -52,8 +52,8 @@
                 <label for="note-finished-date-checkbox">Finished</label>
             </div>
             <div class="note-item-row-right">
-                <input type="checkbox" id="note-finished-date-checkbox" name="finishedDateChecked" {{{finishedDateChecked finishedDate}}}>
-                <input type="hidden" id="note-finished-date" value="{{{finishedDate}}}" name="finishedDate">
+                <input type="checkbox" id="note-finished-date-checkbox" name="finishedDateChecked" {{{finishedDateChecked note.finishedDate}}}>
+                <input type="hidden" id="note-finished-date" value="{{{note.finishedDate}}}" name="finishedDate">
             </div>
         </div>
         <div class="note-detail-row">

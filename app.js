@@ -21,10 +21,10 @@ var getRelativeDate = require('./script/getRelativeDate');
 
 var hbs = require('express-hbs');
 
-var sortType = "importance";
-var sortOrder = -1;
-var filterOn = false;
-app.locals.styleSheetOption = "notes.css";
+/*var sortType = "importance";
+ var sortOrder = -1;
+ var filterOn = false;
+ app.locals.styleSheetOption = "notes.css";*/
 
 app.engine('hbs', hbs.express4({
     partialsDir: __dirname + '/views/partials'
@@ -60,32 +60,81 @@ hbs.registerHelper("finishedDateChecked", function (finishedDate) {
     }
 });
 
-hbs.registerHelper("getStyleSheetOption", function () {
-    return app.locals.styleSheetOption;
-});
+/*
+ hbs.registerHelper("getStyleSheetOption", function () {
+ return response.locals.actualSession.styleSheetOption;
+ });
 
-hbs.registerHelper("setSelectedStyleSheet", function (styleSheetOption) {
-    if (Number(styleSheetOption) === 1) {
-        if (app.locals.styleSheetOption === "notes.css") {
-            return 'selected="selected"';
-        }
-    }
-    if (Number(styleSheetOption) === 2) {
-        if (app.locals.styleSheetOption === "fancynotes.css") {
-            return 'selected="selected"';
-        }
-    }
-});
+ hbs.registerHelper("setSelectedStyleSheet", function (styleSheetOption) {
+ if (Number(styleSheetOption) === 1) {
+ if (response.locals.actualSession.styleSheetOption === "notes.css") {
+ return 'selected="selected"';
+ }
+ }
+ if (Number(styleSheetOption) === 2) {
+ if (response.locals.actualSession.styleSheetOption === "fancynotes.css") {
+ return 'selected="selected"';
+ }
+ }
+ });
+ */
 
 var publicPath = path.resolve(__dirname, "public");
 
 app.use(express.static(publicPath));
 
+app.use(function (request, response, next) {
+    response.locals.actualSession = request.session;
+
+    /* if (!response.locals.actualSession.notes) {
+     response.locals.actualSession.notes = {};
+     }*/
+    if (!response.locals.actualSession.sortType) {
+        response.locals.actualSession.sortType = "importance";
+    }
+    if (!response.locals.actualSession.sortOrder) {
+        response.locals.actualSession.sortOrder = -1;
+    }
+    if (!response.locals.actualSession.filterOn) {
+        response.locals.actualSession.filterOn = false;
+    }
+    if (!response.locals.actualSession.styleSheetOption) {
+        response.locals.actualSession.styleSheetOption = "notes.css";
+    }
+
+    hbs.registerHelper("getStyleSheetOption", function () {
+        return response.locals.actualSession.styleSheetOption;
+    });
+
+    hbs.registerHelper("setSelectedStyleSheet", function (styleSheetOption) {
+        if (Number(styleSheetOption) === 1) {
+            if (response.locals.actualSession.styleSheetOption === "notes.css") {
+                return 'selected="selected"';
+            }
+        }
+        if (Number(styleSheetOption) === 2) {
+            if (response.locals.actualSession.styleSheetOption === "fancynotes.css") {
+                return 'selected="selected"';
+            }
+        }
+    });
+
+    /*hbs.registerHelper("getNotes", function () {
+     return response.locals.actualSession.notes.length();
+     })*/
+
+    next();
+});
+
 
 app.get("/", function (request, response) {
-    db.find({}).sort({[sortType]: sortOrder}).exec(function (err, docs) {
-        app.locals.notes = docs;
-        response.render("overview");
+
+    db.find({}).sort({[response.locals.actualSession.sortType]: response.locals.actualSession.sortOrder}).exec(function (err, docs) {
+        response.locals.actualSession.notes = docs;
+
+        console.log(response.locals.actualSession.sortType);
+        console.log(response.locals.actualSession.notes);
+        response.render("overview", {notes: response.locals.actualSession.notes});
     });
 });
 
@@ -97,8 +146,8 @@ app.get("/detail", function (request, response) {
 
 app.get("/detail/:id", function (request, response) {
     db.findOne({_id: request.params.id}, function (err, docs) {
-        app.locals.currentNote = docs;
-        response.render("detail", app.locals.currentNote);
+        response.locals.actualSession.currentNote = docs;
+        response.render("detail", {note:response.locals.actualSession.currentNote});
     });
 });
 
@@ -120,38 +169,39 @@ app.post("/detail", function (request, response) {
     delete request.body["finishedDateChecked"];
 
     db.update({_id: request.body["_id"]}, request.body, {upsert: true});
-    console.log(request.body);
+
     response.redirect("/");
 });
 
 app.get("/ajax/sort", function (request, response, next) {
-    console.log(request.query.sortButton);
+
+    //console.log(request.query.sortButton);
 
     if (request.query.sortButton.indexOf("filter") > 0) {
-        filterOn = filterOn ? false : true;
+        response.locals.actualSession.filterOn = response.locals.actualSession.filterOn ? false : true;
     } else {
 
         var actualSortType = camelCase(request.query.sortButton.substring(12));
 
-        if (sortType === actualSortType) {
-            sortOrder = -1 * sortOrder;
+        if (response.locals.actualSession.sortType === actualSortType) {
+            response.locals.actualSession.sortOrder = -1 * response.locals.actualSession.sortOrder;
         } else {
-            sortOrder = -1;
+            response.locals.actualSession.sortOrder = -1;
         }
 
-        sortType = actualSortType;
+        response.locals.actualSession.sortType = actualSortType;
     }
 
     var actualFilter = {};
 
-    if (filterOn) {
+    if (response.locals.actualSession.filterOn) {
         actualFilter = {finishedDate: {$exists: true}}
     }
 
-    console.log(sortType);
-    db.find(actualFilter).sort({[sortType]: sortOrder}).exec(function (err, docs) {
-        app.locals.notes = docs;
-        response.render("ajaxnotes");
+    //console.log(sortType);
+    db.find(actualFilter).sort({[response.locals.actualSession.sortType]: response.locals.actualSession.sortOrder}).exec(function (err, docs) {
+        response.locals.actualSession.notes = docs;
+        response.render("ajaxnotes", {notes: response.locals.actualSession.notes});
     });
 });
 
@@ -161,16 +211,16 @@ app.get("/ajax/finished", function (request, response, next) {
     db.findOne({_id: finishedNoteId}, function (err, docs) {
         if (docs.finishedDate) {
             db.update({_id: finishedNoteId}, {$unset: {finishedDate: true}}, {}, function () {
-                db.find({}).sort({[sortType]: sortOrder}).exec(function (err, docs) {
-                    app.locals.notes = docs;
-                    response.render("ajaxnotes");
+                db.find({}).sort({[response.locals.actualSession.sortType]: response.locals.actualSession.sortOrder}).exec(function (err, docs) {
+                    response.locals.actualSession.notes = docs;
+                    response.render("ajaxnotes", {notes: response.locals.actualSession.notes});
                 });
             });
         } else {
             db.update({_id: finishedNoteId}, {$set: {finishedDate: Date()}}, {}, function () {
-                db.find({}).sort({[sortType]: sortOrder}).exec(function (err, docs) {
-                    app.locals.notes = docs;
-                    response.render("ajaxnotes");
+                db.find({}).sort({[response.locals.actualSession.sortType]: response.locals.actualSession.sortOrder}).exec(function (err, docs) {
+                    response.locals.actualSession.notes = docs;
+                    response.render("ajaxnotes", {notes: response.locals.actualSession.notes});
                 });
             });
         }
@@ -179,15 +229,15 @@ app.get("/ajax/finished", function (request, response, next) {
 });
 
 app.get("/stylechange", function (request, response, next) {
-    var sess = request.session;
-    console.log(request.query);
+
+    //console.log(request.query);
     if (request.query.newStyleSheetOption == "black-white-style") {
-        app.locals.styleSheetOption = "notes.css";
+        response.locals.actualSession.styleSheetOption = "notes.css";
         //sess.styleSheetOption2 = "notes.css";
         //console.log("Session ID" + sess.id);
     }
     if (request.query.newStyleSheetOption == "color-style") {
-        app.locals.styleSheetOption = "fancynotes.css";
+        response.locals.actualSession.styleSheetOption = "fancynotes.css";
         //sess.styleSheetOption2 = "fancynotes.css";
         //console.log("Session ID" + sess.id);
     }

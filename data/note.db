@@ -1,4 +1,5 @@
 {"_id":"6R0iarT9HDmJNS0N","createDate":"2016-11-10T16:37:38.420Z","title":"Skianzug aus der Reinigung abholen","description":"Abholschein nicht vergessen!","dueDate":"2016-11-17","importance":"2","finishedDate":"2016-11-10T16:44:28.088Z"}
 {"createDate":"2016-11-10T16:37:09.806Z","title":"Kinobillets reservieren","description":"","dueDate":"2016-11-24","importance":"2","_id":"GpxAPdEKSwVFYaUv"}
 {"createDate":"2016-11-10T16:38:21.863Z","title":"Velo reparieren","description":"Benötigtes Material","dueDate":"2017-03-31","importance":"1","_id":"fT1sqvASQbLltrto"}
-{"_id":"ty5r5VOAxAdXnniO","createDate":"2016-11-10T16:36:11.531Z","title":"Wintermantel kaufen","description":"","dueDate":"","importance":"4"}
+{"createDate":"2016-11-10T18:29:18.189Z","title":"Restaurant reservieren","description":"Tisch nicht bei der Küche","dueDate":"2016-11-08","importance":"1","finishedDate":"2016-11-10T18:29:18.189Z","_id":"hUroA25gOdYvvrev"}
+{"_id":"ty5r5VOAxAdXnniO","createDate":"2016-11-10T16:36:11.531Z","title":"Wintermantel kaufen","description":"","dueDate":"","importance":"5","finishedDate":"2016-11-10T18:28:21.295Z"}

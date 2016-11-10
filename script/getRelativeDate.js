@@ -21,7 +21,7 @@ function getRelativeDate(dateValue, undefinedDateValueString) {
     if (!dateValue) {
         relativeTmeString = undefinedDateValueString;
     } else {
-        timeDifference = Math.round((new Date - new Date("'" + dateValue + "'")) / 1000);
+        timeDifference = Math.round((new Date() - new Date(dateValue)) / 1000);
         absoluteTimeDifference = Math.abs(timeDifference);
 
         if (absoluteTimeDifference < minute) {

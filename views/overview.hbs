@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../css/{{{getStyleSheetOption}}}">
+    <link rel="stylesheet" href="../css/{{{styleSheetOption}}}">
     <meta charset="UTF-8">
     <title>Note Pro</title>
 </head>
@@ -10,8 +10,7 @@
     <div class="create-note-area">
         <button type="button" class="btn" id="btn-create-new-note">Create new note</button>
         <select id="style-selector">
-            <option value="black-white-style" {{{setSelectedStyleSheet "1"}}}>Black white style</option>
-            <option value="color-style" {{{setSelectedStyleSheet "2"}}}>Color style</option>
+            {{{dropDownList}}}
         </select>
     </div>
     <div class="sort-notes-area">
@@ -28,7 +27,7 @@
                 {{> "notes"}}
             {{/each}}
         {{else}}
-            <p>No pending tasks.</p>x
+            <p>No tasks.</p>x
         {{/if}}
     </div>
 </div>
